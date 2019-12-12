@@ -97,6 +97,15 @@ namespace PrismMVVMTestProject.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Something Went Wrong.
+        /// </summary>
+        internal static string SomethingWentWrong {
+            get {
+                return ResourceManager.GetString("SomethingWentWrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Validation.
         /// </summary>
         internal static string Validation {
@@ -111,6 +120,15 @@ namespace PrismMVVMTestProject.Properties {
         internal static string ValidationErrorMessage {
             get {
                 return ResourceManager.GetString("ValidationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://localhost:60721/api/contact.
+        /// </summary>
+        internal static string WedUri {
+            get {
+                return ResourceManager.GetString("WedUri", resourceCulture);
             }
         }
     }

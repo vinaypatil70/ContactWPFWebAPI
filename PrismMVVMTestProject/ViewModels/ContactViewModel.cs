@@ -1,27 +1,19 @@
-﻿using PrismMVVMTestProject.Models;
-using PrismMVVMTestProject.Enums;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 using Prism.Commands;
 using System.Collections.ObjectModel;
-using System;
 using System.Net.Http;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
-
-using Microsoft.Win32;
-using System.Windows.Media.Imaging;
 using PrismMVVMTestProject.Properties;
-using System.Linq;
+using PrismMVVMTestProject.DataModels;
 
 namespace PrismMVVMTestProject.ViewModels
 {
     public class ContactViewModel : BindableBase
     {
-        string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Contacts.json";
-
         private int tabSelectedIndex = 0;
         private Contact contact;
         private ObservableCollection<Contact> contacts;
@@ -54,35 +46,46 @@ namespace PrismMVVMTestProject.ViewModels
             Load();
         }
 
-        private void Load()
+        private async void Load()
         {
             Contact = new Contact();
-            Contacts = LoadContacts();
+            Contacts = await LoadContacts();
         }
 
-        private ObservableCollection<Contact> LoadContacts()
+        private async Task<ObservableCollection<Contact>> LoadContacts()
         {
             ObservableCollection<Contact> contacts = new ObservableCollection<Contact>();
-            if (System.IO.File.Exists(filePath))
+            HttpClient httpClient = new HttpClient();
+            var response = httpClient.GetAsync(Resources.WedUri).Result;
+            
+            if (response.StatusCode == HttpStatusCode.OK)
             {
-                string json = System.IO.File.ReadAllText(filePath);
+                string json = await response.Content.ReadAsStringAsync();
                 contacts = new ObservableCollection<Contact>(Newtonsoft.Json.JsonConvert.DeserializeObject<List<Contact>>(json));
             }
             return contacts;
         }
 
-        private void SaveContact()
+        private async void SaveContact()
         {
             if (ValidateContact())
             {
                 Contacts.Add(Contact);
                 string json = Newtonsoft.Json.JsonConvert.SerializeObject(Contacts);
-                System.IO.File.WriteAllText(filePath, json);
-                MessageBoxResult result = MessageBox.Show(Resources.SaveMessage, Resources.Save, MessageBoxButton.OK, MessageBoxImage.Information);
-                if (result == MessageBoxResult.OK)
+                HttpResponseMessage response = await new HttpClient().PostAsync(Resources.WedUri, new StringContent(json));
+
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    ShowContactDetails();
-                    Reset();
+                    MessageBoxResult result = MessageBox.Show(Resources.SaveMessage, Resources.Save, MessageBoxButton.OK, MessageBoxImage.Information);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        ShowContactDetails();
+                        Reset();
+                    }
+                }
+                else
+                {
+                    MessageBoxResult result = MessageBox.Show(Resources.SomethingWentWrong, Resources.Validation, MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             else

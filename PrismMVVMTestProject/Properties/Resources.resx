@@ -129,10 +129,16 @@
   <data name="SaveMessage" xml:space="preserve">
     <value>Details Saved Sucessfully.</value>
   </data>
+  <data name="SomethingWentWrong" xml:space="preserve">
+    <value>Something Went Wrong</value>
+  </data>
   <data name="Validation" xml:space="preserve">
     <value>Validation</value>
   </data>
   <data name="ValidationErrorMessage" xml:space="preserve">
     <value>Please fill all fields.</value>
+  </data>
+  <data name="WedUri" xml:space="preserve">
+    <value>http://localhost:60721/api/contact</value>
   </data>
 </root>

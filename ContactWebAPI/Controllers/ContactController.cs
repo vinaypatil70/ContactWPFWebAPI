@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ContactWebAPI.Controllers
 {
-    public class ContactController : Controller
+    public class ContactController : ApiController
     {
         string filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Contacts.json";
 
@@ -23,11 +23,13 @@ namespace ContactWebAPI.Controllers
             return contacts;
         }
 
+        // GET api/contact
         public IEnumerable<Contact> GetAllContacts()
         {
             return LoadContacts();
         }
 
+        // GET api/contact/00000000-0000-0000-0000-000000000000
         public Contact GetContact(Guid id)
         {
             var contact = LoadContacts().FirstOrDefault((p) => p.Id == id);
@@ -38,6 +40,7 @@ namespace ContactWebAPI.Controllers
             return contact;
         }
 
+        //POST api/contact
         public bool PostContact(Contact objContact)
         {
             var lstcontact = LoadContacts();
@@ -47,6 +50,7 @@ namespace ContactWebAPI.Controllers
             return true;
         }
 
+        //POST api/contact
         public bool UpdateContact(Contact objContact)
         {
             var lstcontact = LoadContacts();
@@ -58,6 +62,7 @@ namespace ContactWebAPI.Controllers
             return true;
         }
 
+        //
         public void DeleteAllContacts()
         {
             System.IO.File.Delete(filePath);
