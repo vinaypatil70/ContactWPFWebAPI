@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Prism.Mvvm;
 
 namespace PrismMVVMTestProject.Models
@@ -30,23 +29,23 @@ namespace PrismMVVMTestProject.Models
 
         public string FullName { get { return string.Format("{0} {1}", firstName, lastName); } }
 
-        private List<string> phoneNumbers;
-        public List<string> PhoneNumbers
+        private string phoneNumber;
+        public string PhoneNumber
         {
-            get { return phoneNumbers; }
+            get { return phoneNumber; }
             set
             {
-                SetProperty(ref phoneNumbers, value);
+                SetProperty(ref phoneNumber, value);
             }
         }
 
-        private List<string> emails;
-        public List<string> Emails
+        private string emailId;
+        public string EmailId
         {
-            get { return emails; }
+            get { return emailId; }
             set
             {
-                SetProperty(ref emails, value);
+                SetProperty(ref emailId, value);
             }
         }
 
