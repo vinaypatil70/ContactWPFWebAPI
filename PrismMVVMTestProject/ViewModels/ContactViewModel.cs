@@ -56,7 +56,7 @@ namespace PrismMVVMTestProject.ViewModels
         {
             ObservableCollection<Contact> contacts = new ObservableCollection<Contact>();
             HttpClient httpClient = new HttpClient();
-            var response = httpClient.GetAsync(Resources.WedUri).Result;
+            var response = httpClient.GetAsync(Resources.WebUri).Result;
             
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -72,7 +72,8 @@ namespace PrismMVVMTestProject.ViewModels
             {
                 Contacts.Add(Contact);
                 string json = Newtonsoft.Json.JsonConvert.SerializeObject(Contacts);
-                HttpResponseMessage response = await new HttpClient().PostAsync(Resources.WedUri, new StringContent(json));
+                var content = new StringContent(json);
+                HttpResponseMessage response = await new HttpClient().PostAsync(Resources.WebUri, content);
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {

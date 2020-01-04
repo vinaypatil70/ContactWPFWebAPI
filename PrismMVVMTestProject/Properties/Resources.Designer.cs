@@ -126,9 +126,9 @@ namespace PrismMVVMTestProject.Properties {
         /// <summary>
         ///   Looks up a localized string similar to http://localhost:60721/api/contact.
         /// </summary>
-        internal static string WedUri {
+        internal static string WebUri {
             get {
-                return ResourceManager.GetString("WedUri", resourceCulture);
+                return ResourceManager.GetString("WebUri", resourceCulture);
             }
         }
     }

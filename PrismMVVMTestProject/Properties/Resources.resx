@@ -138,7 +138,7 @@
   <data name="ValidationErrorMessage" xml:space="preserve">
     <value>Please fill all fields.</value>
   </data>
-  <data name="WedUri" xml:space="preserve">
+  <data name="WebUri" xml:space="preserve">
     <value>http://localhost:60721/api/contact</value>
   </data>
 </root>
