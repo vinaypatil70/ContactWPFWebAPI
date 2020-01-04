@@ -5265,11 +5265,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vinayagowda.patil\\Source\\Repos\\vinaypatil70\\ContactWPFWebAPI\\ContactTest\\ContactTest.csproj",
+      "projectUniqueName": "C:\\Users\\vinayagowda.patil\\source\\repos\\vinaypatil70\\ContactWPFWebAPI\\ContactWPFWebAPI\\ContactTest\\ContactTest.csproj",
       "projectName": "ContactTest",
-      "projectPath": "C:\\Users\\vinayagowda.patil\\Source\\Repos\\vinaypatil70\\ContactWPFWebAPI\\ContactTest\\ContactTest.csproj",
+      "projectPath": "C:\\Users\\vinayagowda.patil\\source\\repos\\vinaypatil70\\ContactWPFWebAPI\\ContactWPFWebAPI\\ContactTest\\ContactTest.csproj",
       "packagesPath": "C:\\Users\\vinayagowda.patil\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vinayagowda.patil\\Source\\Repos\\vinaypatil70\\ContactWPFWebAPI\\ContactTest\\obj\\",
+      "outputPath": "C:\\Users\\vinayagowda.patil\\source\\repos\\vinaypatil70\\ContactWPFWebAPI\\ContactWPFWebAPI\\ContactTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\vinayagowda.patil\\AppData\\Roaming\\NuGet\\NuGet.Config",

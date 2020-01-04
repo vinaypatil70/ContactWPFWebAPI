@@ -24,7 +24,7 @@ namespace ContactWebAPI.Controllers
         }
 
         // GET api/contact
-        public IEnumerable<Contact> GetAllContacts()
+        public IEnumerable<Contact> Get()
         {
             return LoadContacts();
         }
@@ -41,17 +41,14 @@ namespace ContactWebAPI.Controllers
         }
 
         //POST api/contact
-        public bool PostContact(Contact objContact)
+        public void Post([FromBody]List<Contact> lstcontact)
         {
-            var lstcontact = LoadContacts();
-            lstcontact.Add(objContact);
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(lstcontact);
             System.IO.File.WriteAllText(filePath, json);
-            return true;
         }
 
         //POST api/contact
-        public bool UpdateContact(Contact objContact)
+        public bool UpdateContact([FromBody]Contact objContact)
         {
             var lstcontact = LoadContacts();
             int index = lstcontact.IndexOf(objContact);

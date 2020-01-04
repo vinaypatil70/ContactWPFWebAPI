@@ -124,7 +124,7 @@ namespace PrismMVVMTestProject.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://localhost:60721/api/contact.
+        ///   Looks up a localized string similar to https://localhost:44382/.
         /// </summary>
         internal static string WebUri {
             get {

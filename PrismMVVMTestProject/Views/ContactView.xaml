@@ -49,54 +49,49 @@
             </TabControl.Resources>
             <TabItem x:Name="tabAddContact" Header="Add Contact" IsSelected="True">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Label Content="First Name" Style="{StaticResource customLabel}" />
-                    <TextBox x:Name="txtFirstName" Grid.Row="1" Width="160" Height="30" VerticalContentAlignment="Center" Text="{Binding Contact.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Label Grid.Column="1" Content="Last Name" Style="{StaticResource customLabel}"/>
-                    <TextBox x:Name="txtLastName" Grid.Row="1" Grid.Column="1" Width="160" Height="30" VerticalContentAlignment="Center" Text="{Binding Contact.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="First Name" Style="{StaticResource customLabel}" />
+                        <TextBox x:Name="txtFirstName" Grid.Row="1" Width="160" Height="30" VerticalContentAlignment="Center" Text="{Binding Contact.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
 
-                    <Label Grid.Row="1" Grid.Column="2" Content="DOB :" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
-                    <DatePicker x:Name="dateDOB" Grid.Row="1" Grid.Column="3" Margin="5 0" VerticalAlignment="Center" SelectedDate="{Binding Contact.DOB}"/>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <Label Content="Last Name" Style="{StaticResource customLabel}"/>
+                        <TextBox x:Name="txtLastName"  Grid.Column="1" Width="160" Height="30" VerticalContentAlignment="Center" Text="{Binding Contact.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
 
-                    <Label Grid.Row="2" Content="Full Name:" Foreground="Gray" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
-                    <TextBlock Grid.Row="2" Grid.Column="1" Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Contact.FullName, Mode=OneWay}"/>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                        <Label Content="Full Name:" Foreground="Gray" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                        <TextBlock Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Contact.FullName, Mode=OneWay}"/>
+                    </StackPanel>
 
-                    <Label Grid.Row="3" Content="Phone Number :" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
-                    <Grid Margin="0 10 10 0" Grid.Row="3" Grid.Column="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <ComboBox x:Name="cmbCountryCode" Width="50" SelectedIndex="0" Height="30" ItemsSource="{Binding Countries}" VerticalContentAlignment="Center">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="{Binding code}"/>
-                                        <Label Content="{Binding name}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <TextBox x:Name="txtPhoneNumber" Grid.Column="1" Margin="5 0 0 0" Height="30" VerticalContentAlignment="Center" MaxLength="10" Text="{Binding Contact.PhoneNumber}"/>
-                    </Grid>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal">
+                        <Label Grid.Row="1" Grid.Column="2" Content="DOB :" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                        <DatePicker x:Name="dateDOB" Grid.Row="1" Grid.Column="3" Margin="5 0" VerticalAlignment="Center" SelectedDate="{Binding Contact.DOB}"/>
+                    </StackPanel>
 
-                    <Label Grid.Row="3" Grid.Column="2" Content="Email :" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                    <TextBox x:Name="txtEmail" Grid.Row="3" Grid.Column="3" Width="160" Height="30" VerticalContentAlignment="Center" Text="{Binding Contact.Email, Mode=TwoWay}" />
-                    
-                    <Button x:Name="btnSubmit" Margin="0 10" Grid.Row="4" Grid.Column="1" Height="40" Width="120" Content="Submit" Command="{Binding cmdSaveContact}"/>
-                    <Button x:Name="btnReset" Margin="0 10" Grid.Row="4" Width="120" Grid.Column="2" Content="Reset" Command="{Binding cmdReset}"/>
+                    <StackPanel Grid.Row="4" Orientation="Horizontal">
+                        <Label Content="Phone Number :" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                        <TextBox x:Name="txtPhoneNumber" Width="160" Height="30" VerticalContentAlignment="Center" MaxLength="10" Text="{Binding Contact.PhoneNumber}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="5" Orientation="Horizontal">
+                        <Label Content="Email :" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <TextBox x:Name="txtEmail" Width="160" Height="30" VerticalContentAlignment="Center" Text="{Binding Contact.Email, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button x:Name="btnSubmit"  Height="40" Width="120" Content="Submit" Command="{Binding cmdSaveContact}"/>
+                        <Button x:Name="btnReset" Margin="10 0 0 0" Width="120" Grid.Column="2" Content="Reset" Command="{Binding cmdReset}"/>
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Name="tabMyContacts" Header="My Contacts">
@@ -104,5 +99,5 @@
             </TabItem>
         </TabControl>
     </Grid>
-   
+
 </Window>

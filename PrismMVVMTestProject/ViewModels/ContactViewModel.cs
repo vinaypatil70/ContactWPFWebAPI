@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows;
 using PrismMVVMTestProject.Properties;
 using PrismMVVMTestProject.DataModels;
+using System.Net.Http.Headers;
 
 namespace PrismMVVMTestProject.ViewModels
 {
@@ -56,8 +57,9 @@ namespace PrismMVVMTestProject.ViewModels
         {
             ObservableCollection<Contact> contacts = new ObservableCollection<Contact>();
             HttpClient httpClient = new HttpClient();
-            var response = httpClient.GetAsync(Resources.WebUri).Result;
-            
+            var response = httpClient.GetAsync(Resources.WebUri + "api/values").Result;
+
+
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 string json = await response.Content.ReadAsStringAsync();
@@ -71,9 +73,10 @@ namespace PrismMVVMTestProject.ViewModels
             if (ValidateContact())
             {
                 Contacts.Add(Contact);
-                string json = Newtonsoft.Json.JsonConvert.SerializeObject(Contacts);
-                var content = new StringContent(json);
-                HttpResponseMessage response = await new HttpClient().PostAsync(Resources.WebUri, content);
+                HttpClient httpClient = new HttpClient();
+                httpClient.BaseAddress = new System.Uri(Resources.WebUri);
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response = await httpClient.PostAsJsonAsync("api/values", Contacts);
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {

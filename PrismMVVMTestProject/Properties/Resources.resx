@@ -139,6 +139,6 @@
     <value>Please fill all fields.</value>
   </data>
   <data name="WebUri" xml:space="preserve">
-    <value>http://localhost:60721/api/contact</value>
+    <value>https://localhost:44382/</value>
   </data>
 </root>
