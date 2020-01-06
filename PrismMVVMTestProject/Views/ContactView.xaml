@@ -102,8 +102,8 @@
                     </Grid.RowDefinitions>
                     <DataGrid x:Name="grdContacts" Margin="10" CanUserAddRows="False" ItemsSource="{Binding Contacts}" AutoGenerateColumns="True"/>
                     <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal">
-                        <Button x:Name="btnEdit"  Height="40" Width="120" Content="Edit" Command="{Binding cmdSaveContact}"/>
-                        <Button x:Name="btnDelete" Margin="10 0" Width="120" Grid.Column="2" Content="Delete" Command="{Binding cmdReset}"/>
+                        <Button x:Name="btnEdit"  Height="40" Width="120" Content="Edit" Command="{Binding cmdEditContact}"/>
+                        <Button x:Name="btnDelete" Margin="10 0" Width="120" Grid.Column="2" Content="Delete" Command="{Binding cmdDelete}"/>
                     </StackPanel>
                 </Grid>
             </TabItem>

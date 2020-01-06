@@ -10,6 +10,7 @@ using System.Windows;
 using PrismMVVMTestProject.Properties;
 using PrismMVVMTestProject.DataModels;
 using System.Net.Http.Headers;
+using System;
 
 namespace PrismMVVMTestProject.ViewModels
 {
@@ -39,11 +40,15 @@ namespace PrismMVVMTestProject.ViewModels
      
         public ICommand cmdSaveContact { get; set; }
         public ICommand cmdReset { get; set; }
+        public ICommand cmdEditContact { get; set; }
+        public ICommand cmdDelete { get; set; }
 
         public ContactViewModel()
         {
             this.cmdSaveContact = new DelegateCommand(SaveContact);
             this.cmdReset = new DelegateCommand(Reset);
+            this.cmdEditContact = new DelegateCommand(EditContact);
+            this.cmdDelete = new DelegateCommand(DeleteContact);
             Load();
         }
 
@@ -119,6 +124,14 @@ namespace PrismMVVMTestProject.ViewModels
         private void ShowContactDetails()
         {
             TabSelectedIndex = 0;
+        }
+
+        private void DeleteContact()
+        {
+        }
+
+        private void EditContact()
+        {
         }
     }
 }
