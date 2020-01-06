@@ -139,14 +139,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PrismMVVMTestProject.exe" size="440832">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PrismMVVMTestProject.exe" size="441856">
       <assemblyIdentity name="PrismMVVMTestProject" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>+QXaLGN2mG0YC54NuiIyS/LW+s63ckwbiOqH8N0XE6g=</dsig:DigestValue>
+        <dsig:DigestValue>okwIam5psuNSr1NEddI8G560Tk+VVAl4iZ1x91WLtKY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -11,6 +11,7 @@ using PrismMVVMTestProject.Properties;
 using PrismMVVMTestProject.DataModels;
 using System.Net.Http.Headers;
 using System;
+using System.Linq;
 
 namespace PrismMVVMTestProject.ViewModels
 {
@@ -31,13 +32,13 @@ namespace PrismMVVMTestProject.ViewModels
             get { return tabSelectedIndex; }
             set { SetProperty(ref tabSelectedIndex, value); }
         }
-        
+
         public ObservableCollection<Contact> Contacts
         {
             get { return contacts; }
             set { SetProperty(ref contacts, value); }
         }
-     
+
         public ICommand cmdSaveContact { get; set; }
         public ICommand cmdReset { get; set; }
         public ICommand cmdEditContact { get; set; }
@@ -73,33 +74,38 @@ namespace PrismMVVMTestProject.ViewModels
             return contacts;
         }
 
-        private async void SaveContact()
+        private void SaveContact()
         {
             if (ValidateContact())
             {
                 Contacts.Add(Contact);
-                HttpClient httpClient = new HttpClient();
-                httpClient.BaseAddress = new System.Uri(Resources.WebUri);
-                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = await httpClient.PostAsJsonAsync("api/values", Contacts);
-
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    MessageBoxResult result = MessageBox.Show(Resources.SaveMessage, Resources.Save, MessageBoxButton.OK, MessageBoxImage.Information);
-                    if (result == MessageBoxResult.OK)
-                    {
-                        ShowContactDetails();
-                        Reset();
-                    }
-                }
-                else
-                {
-                    MessageBoxResult result = MessageBox.Show(Resources.SomethingWentWrong, Resources.Validation, MessageBoxButton.OK, MessageBoxImage.Information);
-                }
+                PostCollection();
             }
             else
             {
                 MessageBoxResult result = MessageBox.Show(Resources.ValidationErrorMessage, Resources.Validation, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private async void PostCollection()
+        {
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new System.Uri(Resources.WebUri);
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage response = await httpClient.PostAsJsonAsync("api/values", Contacts);
+
+            if (response.IsSuccessStatusCode)
+            {
+                MessageBoxResult result = MessageBox.Show(Resources.SaveMessage, Resources.Save, MessageBoxButton.OK, MessageBoxImage.Information);
+                if (result == MessageBoxResult.OK)
+                {
+                    ShowContactDetails();
+                    Reset();
+                }
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show(Resources.SomethingWentWrong, Resources.Validation, MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -128,10 +134,20 @@ namespace PrismMVVMTestProject.ViewModels
 
         private void DeleteContact()
         {
+            List<Contact> selectedContacts = this.Contacts.ToList().Where(c => c.IsChecked).ToList();
+            foreach (var contact in selectedContacts)
+            {
+                int index = this.Contacts.IndexOf(contact);
+                Contacts.RemoveAt(index);
+            }
+
+            PostCollection();
         }
 
         private void EditContact()
         {
+            Contact = Contacts.ToList().FirstOrDefault(c => c.IsChecked);
+            TabSelectedIndex = 0;
         }
     }
 }
